@@ -95,7 +95,7 @@ export default function Home() {
             transition={{ duration: 1 }}
             className="text-5xl font-bold sm:text-6xl md:text-7xl"
           >
-            Manognya
+            Sidharth Ammisetti
           </motion.h1>
 
           <motion.p
