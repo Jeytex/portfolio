@@ -8,7 +8,7 @@ const projects = [
     title: "Jeytex Website",
     desc: "A modern animated website built with Next.js and deployed on Vercel.",
     tech: ["Next.js", "Tailwind", "Framer Motion"],
-    link: "https://jeytex.online",
+    link: "/projects/jeytex",
   },
   {
     title: "Portfolio v1",
