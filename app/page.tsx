@@ -98,7 +98,7 @@ export default function Home() {
             transition={{ duration: 0.7 }}
             className="mt-4 max-w-4xl text-5xl font-black leading-tight sm:text-6xl md:text-7xl"
           >
-            I turn simple ideas into premium web experiences.
+            Work In Progress
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 24 }}
