@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function JeytexProject() {
   return (
     <main className="min-h-screen bg-black text-white px-6 py-20">
@@ -17,12 +19,12 @@ export default function JeytexProject() {
           Visit Live →
         </a>
 
-        <a
+        <Link
           href="/"
           className="px-6 py-3 border border-white/20 rounded-full"
         >
           Back Home
-        </a>
+        </Link>
       </div>
     </main>
   );

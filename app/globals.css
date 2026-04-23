@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #07070a;
+  --foreground: #d8f6ff;
 }
 
 @theme inline {
@@ -12,17 +12,8 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+* {
+  box-sizing: border-box;
 }
 
 html {
@@ -30,5 +21,27 @@ html {
 }
 
 body {
-  cursor: none;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(56, 189, 248, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.scanlines::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.35) 50%);
+  background-size: 100% 4px;
+}
+
+.terminal-panel {
+  background: linear-gradient(145deg, rgba(9, 19, 30, 0.7), rgba(10, 10, 14, 0.7));
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.1), 0 12px 30px rgba(0, 0, 0, 0.35);
 }

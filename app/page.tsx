@@ -1,206 +1,167 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import Link from "next/link";
 
-const projects = [
+const concepts = [
   {
-    title: "Jeytex Website",
-    desc: "A modern animated website built with Next.js and deployed on Vercel.",
-    tech: ["Next.js", "Tailwind", "Framer Motion"],
-    link: "/projects/jeytex",
+    name: "Neon Command Deck",
+    pitch: "A portfolio framed as a futuristic mission control dashboard with live status cards and logs.",
   },
   {
-    title: "Portfolio v1",
-    desc: "My first personal portfolio with smooth animations and clean UI.",
-    tech: ["React", "CSS"],
-    link: "#",
+    name: "Digital Museum",
+    pitch: "Each project appears as a curated exhibit with guided storytelling and artifacts.",
+  },
+  {
+    name: "Glitch Comic Universe",
+    pitch: "A scrolling cyber-comic where projects are episodes and interactions trigger panel effects.",
   },
 ];
 
+const experiments = [
+  {
+    title: "Jeytex Signal",
+    type: "Launch Case",
+    summary: "Marketing system designed as a high-conversion visual narrative.",
+    href: "/projects/jeytex",
+    stack: ["Next.js", "Motion", "UX Writing"],
+  },
+  {
+    title: "Portfolio OS",
+    type: "Identity Build",
+    summary: "A personal operating system for showcasing ideas, process, and execution.",
+    href: "#",
+    stack: ["Branding", "Type", "Interaction"],
+  },
+  {
+    title: "Midnight Product Lab",
+    type: "Concept",
+    summary: "Rapid product prototypes tested through animation and story-driven flows.",
+    href: "#",
+    stack: ["Product", "Animation", "Iteration"],
+  },
+];
+
+const selectedConcept = concepts[0];
+
 export default function Home() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const moveCursor = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-    };
-
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener("mousemove", moveCursor);
-    window.addEventListener("scroll", handleScroll);
-
-    handleScroll();
-
-    return () => {
-      window.removeEventListener("mousemove", moveCursor);
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
-    <main className="bg-black text-white">
-      {/* SCROLL PROGRESS BAR */}
-      <div className="fixed left-0 top-0 z-[1000] h-1 w-full bg-white/10">
-        <div
-          className="h-full bg-white transition-[width] duration-150"
-          style={{ width: `${scrollProgress}%` }}
-        />
-      </div>
+    <main className="grid-bg min-h-screen overflow-x-hidden bg-[#07070a] text-[#d8f6ff]">
+      <div className="scanlines pointer-events-none fixed inset-0 z-10 opacity-40" />
 
-      {/* CUSTOM CURSOR */}
-      <div
-        className="pointer-events-none fixed left-0 top-0 z-[999] h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white mix-blend-difference transition-transform duration-150"
-        style={{
-          left: position.x,
-          top: position.y,
-        }}
-      />
-
-      {/* NAVBAR */}
-      <nav className="fixed top-0 left-0 z-50 flex w-full items-center justify-between border-b border-white/10 bg-black/30 px-8 py-4 backdrop-blur-md">
-        <h1 className="font-semibold">Sidhu</h1>
-
-        <div className="flex gap-6 text-sm text-gray-300">
-          <a href="#hero" className="transition hover:text-white">
-            Home
-          </a>
-          <a href="#about" className="transition hover:text-white">
-            About
-          </a>
-          <a href="#projects" className="transition hover:text-white">
-            Projects
-          </a>
-        </div>
-      </nav>
-
-      {/* HERO */}
-      <section
-        id="hero"
-        className="relative flex h-screen items-center justify-center overflow-hidden pt-20"
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_40%)]" />
-
-        <div className="relative z-10 px-6 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 80 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="text-5xl font-bold sm:text-6xl md:text-7xl"
-          >
-            Sidharth Ammisetti
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 1 }}
-            className="mt-4 text-lg text-gray-400 sm:text-xl"
-          >
-            I build cool stuff.
-          </motion.p>
-
-          <motion.a
-            href="#projects"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 1 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="mt-8 inline-flex items-center rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm text-white transition hover:bg-white/20"
-          >
-            View Projects
-          </motion.a>
-        </div>
-      </section>
-
-      {/* ABOUT */}
-      <section
-        id="about"
-        className="flex min-h-screen items-center justify-center px-6 py-24 scroll-mt-24"
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.9 }}
-          className="max-w-3xl text-center"
-        >
-          <h2 className="text-4xl font-semibold sm:text-5xl">About Me</h2>
-
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-gray-400 sm:text-lg">
-            I'm a student who loves to learn and build modern, animated websites
-            and create cool digital experiences.
-          </p>
-        </motion.div>
-      </section>
-
-      {/* PROJECTS */}
-      <section
-        id="projects"
-        className="flex min-h-screen items-center justify-center px-6 py-24 scroll-mt-24"
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.9 }}
-          className="w-full max-w-6xl"
-        >
-          <div className="text-center">
-            <h2 className="text-4xl font-semibold sm:text-5xl">Projects</h2>
-            <p className="mt-4 text-gray-400">
-              A few things I’ve built or am building.
-            </p>
+      <header className="relative z-20 border-b border-cyan-300/20 bg-[#07070a]/80 backdrop-blur-md">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <p className="font-mono text-xs uppercase tracking-[0.4em] text-cyan-200">SIDHU // COMMAND DECK</p>
+          <div className="flex gap-5 text-xs uppercase tracking-[0.2em] text-cyan-100/80">
+            <a href="#concept">Concept</a>
+            <a href="#lab">Lab</a>
+            <a href="#transmit">Transmit</a>
           </div>
+        </nav>
+      </header>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {projects.map((project, index) => (
-              <motion.a
-                key={project.title}
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15, duration: 0.7 }}
-                whileHover={{ y: -10, scale: 1.03 }}
-                className="group block rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition hover:bg-white/10"
+      <section className="relative z-20 mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.3fr_0.7fr]">
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+          <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-300">Active Mode: Creative Overdrive</p>
+          <h1 className="mt-5 text-5xl font-black leading-[0.95] sm:text-6xl md:text-7xl">
+            Portfolio,
+            <br />
+            reimagined as a
+            <span className="block text-cyan-300">Neon Command Deck.</span>
+          </h1>
+          <p className="mt-6 max-w-xl text-base leading-7 text-cyan-50/75">
+            You asked for different. So this experience behaves like a sci-fi control room where each project is a mission, each section is a system module, and every visual detail feels custom-made.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-4">
+            <a href="#lab" className="rounded-sm border border-cyan-200/70 bg-cyan-300/10 px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-cyan-100 hover:bg-cyan-300/20">
+              Open Mission Log
+            </a>
+            <a href="#transmit" className="rounded-sm border border-fuchsia-300/70 bg-fuchsia-300/10 px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-fuchsia-100 hover:bg-fuchsia-300/20">
+              Transmit Request
+            </a>
+          </div>
+        </motion.div>
+
+        <motion.aside
+          id="concept"
+          initial={{ opacity: 0, x: 24 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.15, duration: 0.7 }}
+          className="terminal-panel rounded-2xl border border-cyan-300/30 p-5"
+        >
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-cyan-200">concept selection</p>
+          <div className="mt-4 space-y-3">
+            {concepts.map((concept) => (
+              <div
+                key={concept.name}
+                className={`rounded-lg border p-3 ${
+                  concept.name === selectedConcept.name
+                    ? "border-cyan-200/70 bg-cyan-300/10"
+                    : "border-cyan-400/20 bg-black/30"
+                }`}
               >
-                {/* FAKE PREVIEW IMAGE */}
-                <div className="h-40 rounded-xl bg-gradient-to-br from-white/10 to-transparent mb-5" />
-
-                <h3 className="text-2xl font-semibold">{project.title}</h3>
-                <p className="mt-2 text-gray-400">{project.desc}</p>
-
-                {/* TECH TAGS */}
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-xs px-3 py-1 rounded-full bg-white/10 border border-white/10 text-gray-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* HOVER INDICATOR */}
-                <div className="mt-6 text-sm text-gray-500 group-hover:text-white transition">
-                  View Project →
-                </div>
-              </motion.a>
+                <p className="font-semibold text-cyan-100">{concept.name}</p>
+                <p className="mt-1 text-sm text-cyan-100/70">{concept.pitch}</p>
+              </div>
             ))}
           </div>
-        </motion.div>
+          <p className="mt-5 border-t border-cyan-300/20 pt-4 font-mono text-xs uppercase tracking-[0.2em] text-emerald-300">
+            Selected: {selectedConcept.name}
+          </p>
+        </motion.aside>
+      </section>
+
+      <section id="lab" className="relative z-20 mx-auto w-full max-w-6xl px-6 pb-10 pt-4">
+        <div className="mb-6 flex items-center justify-between">
+          <h2 className="font-mono text-sm uppercase tracking-[0.3em] text-cyan-300">Mission Log / Project Lab</h2>
+          <p className="text-xs uppercase tracking-[0.2em] text-cyan-100/70">status: online</p>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-3">
+          {experiments.map((project, index) => (
+            <motion.article
+              key={project.title}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: index * 0.08, duration: 0.5 }}
+              className="terminal-panel group rounded-2xl border border-cyan-300/20 p-5"
+            >
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-fuchsia-200">{project.type}</p>
+              <h3 className="mt-3 text-2xl font-bold text-cyan-100">{project.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-cyan-100/70">{project.summary}</p>
+
+              <div className="mt-5 flex flex-wrap gap-2">
+                {project.stack.map((item) => (
+                  <span key={item} className="rounded-sm border border-cyan-300/30 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-cyan-200">
+                    {item}
+                  </span>
+                ))}
+              </div>
+
+              <Link href={project.href} className="mt-6 inline-flex font-mono text-xs uppercase tracking-[0.2em] text-cyan-300 transition group-hover:text-fuchsia-200">
+                inspect mission →
+              </Link>
+            </motion.article>
+          ))}
+        </div>
+      </section>
+
+      <section id="transmit" className="relative z-20 mx-auto w-full max-w-6xl px-6 pb-24 pt-14">
+        <div className="terminal-panel rounded-3xl border border-fuchsia-300/40 p-8 md:p-10">
+          <p className="font-mono text-xs uppercase tracking-[0.3em] text-fuchsia-200">open channel</p>
+          <h2 className="mt-4 text-4xl font-black text-cyan-100 sm:text-5xl">Let&apos;s build something nobody else would dare to ship.</h2>
+          <p className="mt-4 max-w-2xl text-cyan-100/75">
+            Need a bold portfolio, product site, or launch experience? I can craft one with a distinct visual language instead of another copy-paste trend layout.
+          </p>
+          <a
+            href="mailto:hello@example.com"
+            className="mt-8 inline-flex rounded-sm border border-fuchsia-200/70 bg-fuchsia-300/20 px-7 py-3 font-mono text-xs uppercase tracking-[0.2em] text-fuchsia-100 hover:bg-fuchsia-300/30"
+          >
+            transmit message
+          </a>
+        </div>
       </section>
     </main>
   );
