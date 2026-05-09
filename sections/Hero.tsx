@@ -45,13 +45,14 @@ export function Hero() {
             Interactive portfolio shell / build phase 01
           </motion.p>
           <motion.h1
-            className="max-w-5xl text-[clamp(3.8rem,12vw,12.5rem)] font-black leading-[0.78] text-white"
+            className="max-w-5xl text-[clamp(3.8rem,12vw,12.5rem)] font-black leading-[0.78] text-white transition-colors duration-300 hover:text-cyan-50"
             initial={{ opacity: 0, y: 42, filter: "blur(16px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ scale: 1.02, x: 10 }}
           >
             SIDHARTH
-            <span className="block text-cyan-200">SYSTEMS</span>
+            <span className="block text-cyan-200 drop-shadow-[0_0_8px_rgba(34,211,238,0.2)]">AMMISETTI</span>
           </motion.h1>
           <motion.p
             className="mt-8 max-w-2xl text-base leading-8 text-zinc-300 sm:text-lg"
@@ -59,15 +60,13 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.16, duration: 0.7 }}
           >
-            A portfolio disguised as a high-density interface: realtime motion,
-            spatial depth, and product-grade polish before the real case studies
-            are wired in.
+            Computer science student pursuing cyber security. Securing systems. Building the future.
           </motion.p>
         </div>
 
         <motion.aside
           data-cursor="magnet"
-          className="relative overflow-hidden border border-white/12 bg-white/[0.055] p-5 shadow-2xl shadow-cyan-950/40 backdrop-blur-2xl"
+          className="relative overflow-hidden border border-white/12 bg-white/[0.055] p-5 shadow-2xl shadow-cyan-950/40 backdrop-blur-2xl transition duration-500 hover:border-cyan-200/40 hover:bg-white/[0.08]"
           style={{ x: panelX, y: panelY }}
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
